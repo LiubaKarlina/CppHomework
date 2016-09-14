@@ -12,3 +12,6 @@ bin/util.o:src/util.c include/io.h
 
 bin/io.o:src/io.c  
 	gcc src/io.c -o bin/io.o
+
+clean:
+	rm -rf bin/*o./main
