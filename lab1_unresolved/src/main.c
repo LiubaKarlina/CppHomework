@@ -7,5 +7,5 @@ void main( void ) {
   int b = 5;
   max(a, b);
   logDebug('!');
-  п
+  qwe();
 }
