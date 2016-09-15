@@ -1,3 +1,8 @@
+all: bin lab1
+
+bin: 
+	mkdir -p bin
+
 lab1:bin/main.o bin/util.o bin/io.o bin/algorithm.o
 	gcc bin/main.o bin/util.o bin/io.o bin/algorithm.o -o lab1  
 
@@ -14,4 +19,4 @@ bin/io.o:src/io.c
 	gcc src/io.c -o bin/io.o
 
 clean:
-	rm -rf bin/*o./main
+	rm -rf bin lab1
