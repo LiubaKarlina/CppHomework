@@ -8,7 +8,14 @@ char * strcpy( char * destination, const char * source)
   return destination; 
 }
 char * strcat( char * destination, const char * source)
-{}
+{
+  char *d = destination;
+  while (*d++ != 0)
+    ;
+  while ((*d++ = *source++) != 0)
+    ;
+  return destination;
+}
 int strcmp( const char * str1, const char *str2 )
 {
   const char *p1 = str1;

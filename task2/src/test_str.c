@@ -5,6 +5,9 @@
 
 bool test_strcat( void )
 {
+  char s[] = "loly";
+  if (strcmp(strcat(s, "pop"), "lolypop"))
+    return false;
   return true;
 }
 
@@ -17,7 +20,7 @@ bool test_strcmp( void )
 
 bool test_strcpy( void )
 {
-  char * s;
+  char s[100];
   strcpy(s, "sunday");
   if (strcmp("sunday" , s) != 0)
     return false;
