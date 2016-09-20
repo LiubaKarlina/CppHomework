@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-char * strcpy( char * destination, const char * source);
-char * strcat( char * destination, const char * source);
-int strcmp( const char * str1, const char *str2 );
-size_t strlen( const char * str );
+char * my_strcpy( char * destination, const char * source);
+char * my_strcat( char * destination, const char * source);
+int my_strcmp( const char * str1, const char *str2 );
+size_t my_strlen( const char * str );

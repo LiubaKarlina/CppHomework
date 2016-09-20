@@ -1,22 +1,26 @@
+#include <stdio.h>
 #include "str.h"
 
-char * strcpy( char * destination, const char * source)
+char * my_strcpy( char * destination, const char * source)
 {
   char *d = destination;
   while ((*d++ = *source++) != 0)
     ;
   return destination; 
 }
-char * strcat( char * destination, const char * source)
+char * my_strcat( char * destination, const char * source)
 {
   char *d = destination;
-  while (*d++ != 0)
-    ;
-  while ((*d++ = *source++) != 0)
-    ;
+  while (*d != 0)
+    d++;
+  while ((*d = *source) != 0)
+  {
+    d++;
+    source++;
+  } 
   return destination;
 }
-int strcmp( const char * str1, const char *str2 )
+int my_strcmp( const char * str1, const char *str2 )
 {
   const char *p1 = str1;
   const char *p2 = str2;
@@ -31,7 +35,7 @@ int strcmp( const char * str1, const char *str2 )
     return -1;
   return 0; 
 }
-size_t strlen( const char * str )
+size_t my_strlen( const char * str )
 {
   int len = 0;
   const char *p = str;

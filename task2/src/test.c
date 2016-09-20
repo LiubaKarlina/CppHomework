@@ -4,7 +4,8 @@
 
 int main( void )
 {
-  if (!test_strcat() || !test_strcmp() || !test_strlen() || !test_strcpy())
+  //if (!test_strcat() || !test_strcmp() || !test_strlen() || !test_strcpy())
+  if (!test_strcat())  
     printf("ERROR\n");
   else
     printf("Eee, All Right\n");
