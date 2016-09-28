@@ -9,16 +9,20 @@
 void remove_position ( list_s *L, int x, int y )
 {
   node_s *p = L->head.next;
+  node_s *del;
   pos_node_s *val;
   while(p != &(L->head))
   {
     val = container_of(p, pos_node_s, node);
     if (val->x == x && val->y == y)
     {
-      remove_node(L, p);
+      del = p;
+      p = p->next;
+      remove_node(L, del);
       free(val);
     }
-    p = p->next;
+    else
+      p = p->next;
   }
 }
 
@@ -66,7 +70,16 @@ int main( void )
   list_s MyList;
   init_list(&MyList);
   printf("length of list %d\n", get_length(&MyList));
+  
   add_position(&MyList, 1, 2);
+  show_all_positions(&MyList);
+  remove_position(&MyList, 1, 2);
+  show_all_positions(&MyList);
+  add_position(&MyList, 1, 3);
+  add_position(&MyList, 4, 3);
+  show_all_positions(&MyList);
+  remove_all(&MyList);
+  show_all_positions(&MyList);
   add_position(&MyList, 3, 4);
   add_position(&MyList, 56, 6);
   show_all_positions(&MyList);
