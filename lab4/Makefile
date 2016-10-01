@@ -1,10 +1,10 @@
-all: bin lab4
+all: bin ms_cli
 
 bin:
 	mkdir -p bin
 
-lab4:bin/main.o bin/mergesort.o bin/ms_cli.o
-	gcc bin/main.o bin/mergesort.o bin/ms_cli.o -o lab4
+ms_cli:bin/main.o bin/mergesort.o bin/ms_cli.o
+	gcc bin/main.o bin/mergesort.o bin/ms_cli.o -o ms_cli
 
 bin/main.o:src/main.c include/ms_cli.h include/mergesort.h
 	gcc -c -I include src/main.c -o bin/main.o 
@@ -16,4 +16,4 @@ bin/ms_cli.o:src/ms_cli.c
 	gcc -c -I include src/ms_cli.c -o bin/ms_cli.o
 
 clean:
-	rm -rf bin lab4
+	rm -rf bin ms_cli
