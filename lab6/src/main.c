@@ -7,35 +7,45 @@
 #define BUFFER_SIZE 100000
 
 void start_element(void *data, const char *element, const char **attribute) {
-    if(!strcmp(element, "human"))
+   context_t *con = (context_t *) data; 
+   if(!strcmp(element, "human"))
     {
       human_t Human;
       char str[256 * 3];
       strcpy(str, attribute[1]); 
-      printf(" %s\n ", str);
       char *pch = strtok(str, " ");
       strcpy(Human.name, pch);
       pch = strtok(NULL, " ");
       strcpy(Human.middle_name, pch);
       pch = strtok(NULL, " ");
       strcpy(Human.family_name, pch);
-      pch = strtok(NULL, " ");
-      Human.phone_size = 0;
-      push_back_human(data, &Human);    
+      pch = strtok(NULL, " "); 
+      push_back_human(con->book, &Human); 
     }
+    if(!strcmp(element, "phone"))
+      con->book->humans[con->last_human].phones[con->last_phone][0] = '\0';
 }
 
 void end_element(void *data, const char *element) {
+  context_t *con = (context_t *) data;  
+  if(!strcmp(element, "human"))
+  {
+    con->book->humans[con->last_human].phone_size = con->last_phone; 
+    con->last_human++;
+    con->last_phone = 0;
+  }
 }
 
 void handle_data(void *data, const char *content, int length) {
     if (content[0] >= '0' && content[0] <= '9')
     {
-	    phonebook_t *book = (phonebook_t *)data;
-	    human_t *h = &(book->humans[book->size - 1]);
-	    strncpy(h->phones[h->phone_size], content, length);
-	    h->phones[h->phone_size][length] = '\0';
-	    h->phone_size++;
+	    context_t *con = (context_t *)data;
+	    phonebook_t *book = con->book;
+            human_t *h = &(book->humans[con->last_human]);
+            strncat(h->phones[con->last_phone], content, length);
+	    //strncpy(h->phones[con->last_phone], content, length);
+	    h->phones[con->last_phone][length] = '\0';
+	    con->last_phone++;  
     }
 }
 
@@ -47,10 +57,14 @@ int parse_xml(phonebook_t *book, const char *filename) {
         return 1;
     }
  
+    context_t con;
+    con.book = book;
+    con.last_human = 0;
+    con.last_phone = 0;
     char buff[BUFFER_SIZE];
 
     XML_Parser  parser = XML_ParserCreate(NULL);
-    XML_SetUserData(parser,book); 
+    XML_SetUserData(parser, &con); 
     XML_SetElementHandler(parser, start_element, end_element);
     XML_SetCharacterDataHandler(parser, handle_data);
 
@@ -78,13 +92,11 @@ int main(int argc, char **argv) {
     int result;
     phonebook_t Book;
     result = load_phonebook_xml(argv[1], &Book);
-    printf("Result of loading is %i\n", result);
+    print_phonebook(&Book);
+    
+    gen_phonebook(&Book, 10);
     result = save_phonebook_xml(argv[2], &Book);
-    printf("Result of saving is %i\n", result);  
-    /*   
-    gen_phonebook(&Book, 3);
-    save_phonebook_xml(argv[3], &Book); 
-    */
+    
     clear_phonebook(&Book);
     return 0;
 }

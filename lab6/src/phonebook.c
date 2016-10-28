@@ -26,7 +26,6 @@ int load_phonebook_xml(const char *filename, phonebook_t *book)
      return result;
    
    qsort(book->humans, book->size, sizeof(human_t), cmp);
-   print_phonebook(book);
    return 0;
 }
 
@@ -92,7 +91,8 @@ void gen_phonebook(phonebook_t *book, size_t size)
   for (i = 0;i < size;i++)
   {
     human_t H;
-    H.phone_size = rand() % 10;
+    H.phone_size = rand() % 9;
+    H.phone_size++;
     for (j =0;j < H.phone_size;j++)
     {
       H.phone_size =  rand() % 20;
@@ -119,9 +119,15 @@ void push_back_human(phonebook_t *book, human_t *human)
   if (book->size == book->capacity)
   {
     if (book->capacity != 0)
+    {
       book->humans = realloc(book->humans, book->capacity * 2 * sizeof(human_t));
+      book->capacity *= 2;     
+    }
     else
-      book->humans = malloc(3 * sizeof(human_t));
+    {
+      book->humans = malloc(2 * sizeof(human_t));
+      book->capacity = 2;
+    }
   }
   book->humans[book->size++] = *human;
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phonebook>
+    <human name="Ninely Danilovna Pivovarova">
+        <phone>075713</phone>
+        <phone>154575460</phone>
+    </human>
+    <human name="Olesya Georgievna Entina">
+        <phone>76002545223</phone>
+        <phone>1188055446056</phone>
+        <phone>8734200002625657</phone>
+        <phone>68536281</phone>
+        <phone>680117032012</phone>
+        <phone>835260727281651546</phone>
+    </human>
+    <human name="Zulyfiya Ivanovna Ryabkova">
+        <phone>0072436251264227851</phone>
+        <phone>1484675860</phone>
+        <phone>4074281</phone>
+    </human>
+    <human name="Sharlotta Danilovna Aspidova">
+        <phone>2227326873</phone>
+    </human>
+    <human name="Evfrosiniya Vladislavovna Turfanova">
+        <phone>3685</phone>
+    </human>
+    <human name="Rada Filippovna Chirkash">
+        <phone>2243610872226720664</phone>
+    </human>
+    <human name="Ulla Igorevna Chirkash">
+        <phone>0217282628340745876</phone>
+        <phone>7088</phone>
+    </human>
+    <human name="Anisyya Alekseevna Chirkash">
+    </human>
+    <human name="Feodora Genadievna Lipina">
+        <phone>15578807</phone>
+        <phone>883</phone>
+        <phone>288</phone>
+    </human>
+    <human name="Aziza Feliksovna Maksimushkina">
+        <phone>72303243212761</phone>
+        <phone>583573823613266528</phone>
+    </human>
+</phonebook>

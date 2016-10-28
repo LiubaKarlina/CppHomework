@@ -16,6 +16,12 @@ typedef struct phonebook_s {
     size_t capacity;
 } phonebook_t;
 
+typedef struct context_s {
+  phonebook_t *book;
+  int last_human;
+  int last_phone;
+} context_t;
+
 int load_phonebook_xml(const char *filename, phonebook_t *book);
 int save_phonebook_xml(const char *filename, phonebook_t *book);
 void print_phonebook(phonebook_t *book);
