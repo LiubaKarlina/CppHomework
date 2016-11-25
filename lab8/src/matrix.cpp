@@ -3,12 +3,13 @@
 #include "matrix.h"
 
 Matrix::Matrix(std::size_t r, std::size_t c) {
+    int *buf = new int [r * c];
     _rows = r;
     _cols = c;
     _data = new int *[r];
 
     for (size_t i = 0;i < r;i++)
-        _data[i] = new int[c];
+        _data[i] = buf + r * i;
 
     for (size_t i = 0;i < _rows;i++)
         for (size_t j = 0;j < _cols;j++)
@@ -19,10 +20,11 @@ Matrix::Matrix(std::size_t r, std::size_t c) {
 Matrix::Matrix(Matrix const &M) {
     _rows = M.get_rows();
     _cols = M.get_cols();
+    int *buf = new int [_rows * _cols];
     _data = new int *[_rows];
 
     for (size_t i = 0;i < _rows;i++)
-        _data[i] = new int[_cols];
+        _data[i] = buf + i *_cols;
 
     for (size_t i = 0;i < _rows;i++)
         for (size_t j = 0;j < _cols;j++)
@@ -31,11 +33,8 @@ Matrix::Matrix(Matrix const &M) {
 
 void Matrix::del_data()
 {
- 
- for (size_t i = 0;i < _rows;i++)
-      delete []_data[i];
-
-    delete []_data;
+  delete []_data[0];
+  delete []_data;
 }
 
 Matrix::~Matrix() {
@@ -45,8 +44,8 @@ Matrix::~Matrix() {
 
 Matrix& Matrix::swap(Matrix& m)
 {
-  _rows = m._rows;
-  _cols = m._cols;
+  std::swap(_rows, m._rows);
+  std::swap(_cols, m._cols);
 
   std::swap(_data, m._data);
 
