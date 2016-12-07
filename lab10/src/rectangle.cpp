@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <cmath>
+
 #include "rectangle.h"
 
 Rectangle::Rectangle(int id, int x, int y, int width, int height): Figure(id, x, y), width(width), height(height)
@@ -16,8 +18,8 @@ void Rectangle::print() const
 
 bool Rectangle::is_inside(int x, int y) const
 {
-  if (this->x <= x && this->x + width >= x)
-    if (this->y <= y && this->y + height >= y)
+  if (std::abs(this->x - x) * 2 <= width)
+    if (std::abs(this->y - y) * 2 <= height)
       return true;
 
   return false;
