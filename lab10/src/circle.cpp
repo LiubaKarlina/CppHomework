@@ -24,7 +24,7 @@ bool Circle::is_inside(int x, int y) const
 {
   x = this->x - x;
   y = this->y - y;
-  if (x * x + y * y <= rad)
+  if (x * x + y * y <= rad * rad)
     return true;
   return false;
 }
