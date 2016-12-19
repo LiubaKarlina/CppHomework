@@ -13,7 +13,7 @@ int main() {
 
    scheme.print_all_figures();
 
-   Figure* found = scheme.is_inside_figure(5, 5);
+   Figure* found = scheme.is_inside_figure(0, 3);
    if (found != 0) {
         found->print();
     }
